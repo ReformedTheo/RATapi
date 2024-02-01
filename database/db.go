@@ -24,8 +24,11 @@ func InitDB() {
 
 func UpdateCoilStatus(HEX string, state int) {
 	InitDB()
-	query := "UPDATE Coil SET Status = ? WHERE HEX = ?"
 	if state == '1' {
-		res, err := DB.Query(query, state, HEX)
+		CoilArriving(HEX, state)
 	}
+}
+
+func CoilArriving(HEX string, satate int) {
+
 }
