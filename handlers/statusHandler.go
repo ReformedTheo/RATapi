@@ -23,7 +23,7 @@ func UpdateStatusHandler(w http.ResponseWriter, r *http.Request) {
 	// Verifica se o código HEX começa com B (bobina) ou RA (rack)
 	if strings.HasPrefix(requestData.HEX, "B") {
 		// Atualiza a bobina
-		database.UpdateCoilStatus(requestData.HEX, requestData.State)
+		database.UpdateCoilStatus(requestData.HEX, requestData.State, requestData.Client)
 	} else {
 		http.Error(w, "Invalid HEX code.", http.StatusBadRequest)
 	}

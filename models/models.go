@@ -7,7 +7,6 @@ type RequestData struct {
 	Client string `json:"client"`
 }
 type Coil struct {
-	ID     int
 	HEX    string
 	Status int
 	Cycles int
