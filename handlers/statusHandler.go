@@ -5,7 +5,6 @@ import (
 	"RATapi/models"
 	"encoding/json"
 	"net/http"
-	"strings"
 )
 
 func UpdateStatusHandler(w http.ResponseWriter, r *http.Request) {
@@ -20,11 +19,10 @@ func UpdateStatusHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Verifica se o código HEX começa com B (bobina) ou RA (rack)
-	if strings.HasPrefix(requestData.HEX, "B") {
-		// Atualiza a bobina
-		database.UpdateCoilStatus(requestData.HEX, requestData.State, requestData.Client)
+	if requestData.Status == 2 {
+		database.CoilMaintence(requestData.Coil_HEX)
 	} else {
-		http.Error(w, "Invalid HEX code.", http.StatusBadRequest)
+		database.UpdateTransportStatus(requestData.HEX, requestData.Coils, requestData.Client, requestData.Status)
 	}
+
 }

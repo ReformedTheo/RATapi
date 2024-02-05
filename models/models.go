@@ -1,14 +1,23 @@
 package models
 
-// RequestData define a estrutura para os dados de entrada da sua requisição.
 type RequestData struct {
-	HEX    string `json:"hex"`
-	State  int    `json:"state"`
-	Client string `json:"client"`
+	HEX      string `json:"hex"`      //hex refering to the RACK
+	Coil_HEX string `json:"coil_hex"` //hex refering to the Coils, only usable if going to maintence
+	Client   string `json:"client"`
+	Coils    []Coil `json:"coils"`
+	Status   int    `json:"status"`
 }
+
 type Coil struct {
-	HEX    string
-	Status int
-	Cycles int
-	Client string
+	HEX    string `json:"hex"`
+	Status int    `json:"status"`
+	Cycles int    `json:"cycles"`
+	Date   string `json:"date"`
+}
+
+type Rack struct {
+	Coils  []Coil `json:"coils"`
+	Client string `json:"client"`
+	Date   string `json:"date"`
+	Status string `json:"status"`
 }
